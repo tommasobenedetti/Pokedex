@@ -21,8 +21,8 @@ let pokemonList = [
 function getAll() {
     return pokemonList;
   }
-  function add(item) {
-    return pokemonList.push(item);
+  function add(pokemon) {
+    return pokemonList.push(pokemon);
   }
 
   return {
