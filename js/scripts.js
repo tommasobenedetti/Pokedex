@@ -1,7 +1,7 @@
 let pokemonRepository = (function () {
   //  Create an array within a pokemonRepository called pokemonList,
   //    and add the pokemon using objects.
-let pokemonList = [
+const pokemonList = [
   {
     name: 'Bulbasaur',
     height: 7,
