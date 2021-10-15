@@ -31,11 +31,11 @@ let modalContainer = document.querySelector('#modal-container');
 // displays the details of a specific pokemon
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-    showModal(pokemon.name, pokemon.height);
+    showModal(pokemon, pokemon.height);
   });
 }
     // all functions related to the modal details are below this
-    
+
 function showModal(pokemon) {
     modalContainer.innerHTML = '';
     let modal = document.createElement('div');
@@ -120,7 +120,7 @@ function loadList() {
 
   function addEventListener(button, pokemon) {
   button.addEventListener("click", function () {
-    showDetails(pokemon.name);
+    showDetails(pokemon);
   });
 }
 
