@@ -1,11 +1,12 @@
 let pokemonRepository = (function () {
   //  Create an array within a pokemonRepository called pokemonList,
+
   //    and add the pokemon using objects.
   const pokemonList = []//create an empty array for pokemonList
 let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=20'
-
 let modalContainer = document.querySelector('#modal-container');
 
+// adds pokemon objects to the pokemonList
   function add(pokemon) {
     if (
       typeof pokemon === "object" &&
@@ -16,6 +17,7 @@ let modalContainer = document.querySelector('#modal-container');
       console.log("pokemon is not correct");
     }
   }
+  // creates the pokemon list on the webpage
   function addListItem(pokemon){
   let unOrderedList = document.querySelector('ul');
   let listItem = document.createElement('li');
@@ -26,13 +28,14 @@ let modalContainer = document.querySelector('#modal-container');
     unOrderedList.appendChild(listItem);
     addEventListener(button, pokemon);
   }
-
+// displays the details of a specific pokemon
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-    showModal(pokemon);
+    showModal(pokemon.name, pokemon.height);
   });
 }
-
+    // all functions related to the modal details are below this
+    
 function showModal(pokemon) {
     modalContainer.innerHTML = '';
     let modal = document.createElement('div');
@@ -100,25 +103,27 @@ function loadList() {
       console.error(e);
     })
   }
-    //create load detals function
-  function loadDetails(item) {
-    let url = item.detailsUrl;
-    return fetch(apiUrl).then(function (response) {
-      return response.json();
-    }).then(function (details) {
-      // Add the details to the item
-      item.imageUrl = details.sprites.front_default;;
-      item.height = details.height;
-      item.types = details.types;
-    }).catch(function (e) {
-      console.error(e);
-    });
-  }
+
+    //create load details function
+    function loadDetails(item) {
+        return fetch(item.detailsUrl).then(function (response) {
+          return response.json();
+        }).then(function (details) {
+          // Add the details to the item
+          item.imageUrl = details.sprites.front_default
+          item.height = details.height;
+          item.types = details.types;
+        }).catch(function (e) {
+          console.error(e);
+        });
+      }
+
   function addEventListener(button, pokemon) {
-     button.addEventListener('click', function () {
-       showDetails(pokemon.name);
-     });
-   }
+  button.addEventListener("click", function () {
+    showDetails(pokemon.name);
+  });
+}
+
   function getAll() {
     return pokemonList;
   }
