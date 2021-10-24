@@ -132,7 +132,7 @@ let pokemonRepository = (function () {
       .catch(function (e) {
         console.error(e);
       });
-  }
+  } 
   //Created a function promise to load the pokemon deatils from an external api.
   function loadDetails(item) {
     let url = item.detailsUrl;
